@@ -137,6 +137,7 @@ func main() {
 		fmt.Print("[create-systemd-service]$ ")
 		// 读取一行
 		gets := bufio.NewReader(os.Stdin)
+		//inputStr, err := gets.ReadString('\n')
 		inputStr, err := gets.ReadString('\n')
 		if err != nil {
 			fmt.Println(err)
@@ -145,11 +146,11 @@ func main() {
 		front := 0
 		var cmdArr []string
 		strLen := len(inputStr)
-		if strLen == 0 || strLen == 1 { // 处理没有键入任何命令
+		if strLen == 0 { // 处理没有键入任何命令
 			continue
 		}
 		for i, content := range inputStr {
-			if content == ' ' || i == strLen-1 || content == '\r'{
+			if content == ' ' || i == strLen-1 {
 				cmdArr = append(cmdArr, inputStr[front:i])
 				if content == ' ' {
 					front = i + 1
